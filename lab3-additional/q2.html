@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouncing Ball Animation</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        canvas {
+            border: 2px solid #3498db;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="600" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Ball properties
+        const ball = {
+            x: 300, // Initial x position
+            y: 200, // Initial y position
+            radius: 20, // Ball radius
+            dx: 2, // Change in x (speed in x direction)
+            dy: -2 // Change in y (speed in y direction)
+        };
+
+        function drawBall() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+            ctx.beginPath(); // Start a new path
+            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2); // Draw the ball
+            ctx.fillStyle = '#3498db'; // Ball color
+            ctx.fill(); // Fill the ball
+            ctx.closePath(); // Close the path
+        }
+
+        function updateBall() {
+            // Update ball position
+            ball.x += ball.dx;
+            ball.y += ball.dy;
+
+            // Check for collision with walls
+            if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
+                ball.dx = -ball.dx; // Reverse direction on x-axis
+            }
+            if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+                ball.dy = -ball.dy; // Reverse direction on y-axis
+            }
+        }
+
+        function animate() {
+            drawBall(); // Draw the ball
+            updateBall(); // Update ball position
+            requestAnimationFrame(animate); // Call animate again for the next frame
+        }
+
+        animate(); // Start the animation
+    </script>
+</body>
+</html>

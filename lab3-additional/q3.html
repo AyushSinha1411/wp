@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sliding Text on Image</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        body {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            height: 100vh;
+
+            margin: 0;
+
+            background-color: #f4f4f4;
+
+            font-family: 'Poppins', sans-serif;
+
+        }
+
+
+        .container {
+
+            position: relative;
+
+            width: 600px; /* Set the width of the image */
+
+            height: 400px; /* Set the height of the image */
+
+            overflow: hidden; /* Hide overflow */
+
+            border-radius: 15px; /* Rounded corners */
+
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow effect */
+
+        }
+
+
+        .image {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover; /* Cover the container */
+
+            border-radius: 15px; /* Rounded corners */
+
+        }
+
+
+        .sliding-text {
+
+            position: absolute;
+
+            bottom: 20px; /* Position from the bottom */
+
+            white-space: nowrap; /* Prevent text wrapping */
+
+            font-size: 24px; /* Text size */
+
+            color: white; /* Text color */
+
+            background-color: rgba(0, 0, 0, 0.7); /* Background for better visibility */
+
+            padding: 10px 20px; /* Padding around text */
+
+            border-radius: 5px; /* Rounded corners */
+
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Shadow effect for text */
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+    <img src="https://www.lockheedmartin.com/content/dam/lockheed-martin/eo/photo/ai-ml/artificial-intelligence-1920.jpg" alt="Sample Image" class="image">
+
+    <div class="sliding-text" id="slidingText">Welcome to Our AI Website!</div>
+
+</div>
+
+
+<script>
+
+    const slidingText = document.getElementById('slidingText');
+
+    const container = document.querySelector('.container');
+
+    let position = -200; // Start position (off-screen to the left)
+
+    const speed = 2; // Speed of the sliding text
+
+
+    function animateText() {
+
+        position += speed; // Move the text to the right
+
+        slidingText.style.left = position + 'px'; // Update the position
+
+
+        // Reset position when it goes off-screen
+
+        if (position > container.offsetWidth) {
+
+            position = -200; // Reset to start position
+
+        }
+
+
+        requestAnimationFrame(animateText); // Call the function again for the next frame
+
+    }
+
+
+    animateText(); // Start the animation
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magazine Cover Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .cover-container {
+            background: linear-gradient(135deg, #ff7eb3, #ff758c);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover-title {
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            background-color: #ffc107;
+            color: black;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .featured-articles {
+            margin-top: 40px;
+            font-size: 1.25rem;
+        }
+
+        .featured-articles .badge {
+            font-size: 1rem;
+            margin-right: 10px;
+        }
+
+        .action-buttons {
+            margin-top: 30px;
+        }
+
+        .action-buttons .btn {
+            margin: 5px;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-weight: bold;
+        }
+
+        .corner-design {
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background-color: #ffc107;
+            transform: rotate(45deg);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .corner-text {
+            position: absolute;
+            top: 40px;
+            right: -30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transform: rotate(-45deg);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="cover-container">
+        <!-- Corner Element -->
+        <div class="corner-design"></div>
+        <div class="corner-text">Exclusive</div>
+
+        <!-- Title and Tagline -->
+        <h1 class="cover-title">The Modern Magazine</h1>
+        <p class="tagline">Your guide to trends, fashion, and lifestyle</p>
+
+        <!-- Highlight Section -->
+        <p>
+            Featuring: <span class="highlight">Top 10 Fashion Icons</span>
+        </p>
+
+        <!-- Featured Articles -->
+        <div class="featured-articles">
+            <p><span class="badge badge-primary">Trending</span> The Rise of Sustainable Fashion</p>
+            <p><span class="badge badge-danger">Exclusive</span> Inside the World of High-Tech Gadgets</p>
+            <p><span class="badge badge-success">New</span> Travel Destinations for 2025</p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button class="btn btn-light">Read Online</button>
+            <button class="btn btn-warning">Subscribe Now</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

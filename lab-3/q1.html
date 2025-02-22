@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Data Visualization Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Vibrant Color Palette */
+            --primary-color: #5E3FD4;
+            --secondary-color: #FF6B6B;
+            --accent-color: #4ECDC4;
+            --background-color: #F7F9FC;
+            --text-color: #2D3748;
+            --card-background: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 30px;
+            color: var(--text-color);
+        }
+
+        .dashboard-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .data-section {
+            background-color: var(--card-background);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(94, 63, 212, 0.1);
+            padding: 25px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .data-table {
+            flex: 2;
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+
+        table thead {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        table th {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        table tbody tr {
+            background-color: #F1F5F9;
+            transition: all 0.3s ease;
+        }
+
+        table tbody tr:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background-color: #E2E8F0;
+        }
+
+        .product-image {
+            flex: 1;
+            max-width: 250px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(78, 205, 196, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .product-image:hover {
+            transform: scale(1.05);
+        }
+
+        .control-panel {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-move {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-move:hover {
+            background-color: #4A2BB3;
+        }
+
+        .btn-reset {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .btn-reset:hover {
+            background-color: #FF4E4E;
+        }
+
+        .movement-indicator {
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            height: 4px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="data-section" id="dataContainer">
+            <div class="data-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MacBook Pro</td>
+                            <td>Laptop</td>
+                            <td>$1,999</td>
+                            <td>25</td>
+                        </tr>
+                        <tr>
+                            <td>iPhone 13</td>
+                            <td>Smartphone</td>
+                            <td>$999</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>iPad Pro</td>
+                            <td>Tablet</td>
+                            <td>$799</td>
+                            <td>35</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <img src="data:image/png;base64,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" alt="Product Image" class="product-image">
+            <div class="movement-indicator" id="movementIndicator"></div>
+        </div>
+
+        <div class="control-panel">
+            <button class="btn btn-move" onclick="moveElements()">
+                <span>Move Elements</span>
+            </button>
+            <button class="btn btn-reset" onclick="resetPosition()">
+                <span>Reset Position</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let isMoving = false;
+        let movementProgress = 0;
+
+        function moveElements() {
+            if (isMoving) return;
+
+            const container = document.getElementById('dataContainer');
+            const movementIndicator = document.getElementById('movementIndicator');
+            const totalMove = window.innerWidth;
+            isMoving = true;
+
+            function animate() {
+                movementProgress += 15;
+                container.style.transform = `translateX(-${movementProgress}px)`;
+                movementIndicator.style.width = `${(movementProgress / totalMove) * 100}%`;
+
+                if (movementProgress < totalMove) {
+                    requestAnimationFrame(animate);
+                } else {
+                    isMoving = false;
+                }
+            }
+
+            animate();
+        }
+
+        function resetPosition() {
+            const container = document.getElementById('dataContainer');
+            const movementIndicator = document.getElementById('movementIndicator');
+
+            function animateReset() {
+                movementProgress -= 30;
+                container.style.transform = `translateX(-${movementProgress}px)`;
+                movementIndicator.style.width = `${(movementProgress / window.innerWidth) * 100}%`;
+
+                if (movementProgress > 0) {
+                    requestAnimationFrame(animateReset);
+                } else {
+                    movementProgress = 0;
+                    container.style.transform = 'translateX(0)';
+                    movementIndicator.style.width = '0%';
+                    isMoving = false;
+                }
+            }
+
+            if (!isMoving) {
+                animateReset();
+            }
+        }
+    </script>
+</body>
+</html>

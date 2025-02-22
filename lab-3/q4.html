@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Birthday Card Customizer</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        :root {
+
+            --primary-color: #3498db;
+
+            --secondary-color: #2ecc71;
+
+            --background-color: #f4f6f9;
+
+            --text-color: #2c3e50;
+
+            --card-shadow: rgba(0, 0, 0, 0.1);
+
+            --border-color: #e9ecef;
+
+        }
+
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+        body {
+
+            font-family: 'Poppins', sans-serif;
+
+            display: flex;
+
+            min-height: 100vh;
+
+            background-color: var(--background-color);
+
+            color: var(--text-color);
+
+            line-height: 1.6;
+
+        }
+
+
+        .container {
+
+            display: flex;
+
+            width: 100%;
+
+            max-width: 1400px;
+
+            margin: 0 auto;
+
+            background-color: white;
+
+            box-shadow: 0 10px 30px var(--card-shadow);
+
+            border-radius: 15px;
+
+            overflow: hidden;
+
+        }
+
+
+        .customization-panel {
+
+            width: 40%;
+
+            padding: 40px;
+
+            background-color: #f9fafb;
+
+            border-right: 1px solid var(--border-color);
+
+        }
+
+
+        .card-preview {
+
+            width: 60%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background-color: #f0f4f8;
+
+            padding: 40px;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 25px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-bottom: 10px;
+
+            font-weight: 600;
+
+            color: var(--text-color);
+
+        }
+
+
+        select, textarea {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: 2px solid var(--border-color);
+
+            border-radius: 8px;
+
+            transition: border-color 0.3s ease;
+
+        }
+
+
+        select:focus, textarea:focus {
+
+            outline: none;
+
+            border-color: var(--primary-color);
+
+        }
+
+
+        .radio-group {
+
+            display: flex;
+
+            gap: 20px;
+
+        }
+
+
+        .radio-group label {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            cursor: pointer;
+
+        }
+
+
+        .update-btn {
+
+            background-color: var(--primary-color);
+
+            color: white;
+
+            border: none;
+
+            padding: 15px 30px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-weight: 600;
+
+            transition: all 0.3s ease;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+        }
+
+
+        .update-btn:hover {
+
+            background-color: #2980b9;
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+
+        }
+
+
+        .birthday-card {
+
+            width: 400px;
+
+            height: 600px;
+
+            background-color: white;
+
+            border-radius: 20px;
+
+            box-shadow: 0 20px 50px var(--card-shadow);
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 30px;
+
+            text-align: center;
+
+            transition: all 0.3s ease;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        .card-image {
+
+            max-width: 250px;
+
+            max-height: 250px;
+
+            margin-bottom: 25px;
+
+            border-radius: 15px;
+
+            object-fit: cover;
+
+            box-shadow: 0 10px 25px var(--card-shadow);
+
+        }
+
+
+        h2 {
+
+            color: var(--primary-color);
+
+            margin-bottom: 15px;
+
+        }
+
+
+        p {
+
+            font-size: 1.1rem;
+
+            max-width: 80%;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="customization-panel">
+            <form id="cardCustomizer">
+                <div class="form-group">
+                    <label for="bgColor">Background Color:</label>
+                    <select id="bgColor">
+                        <option value="white">White</option>
+                        <option value="#e6f2ff">Light Blue</option>
+                        <option value="#e6ffe6">Light Green</option>
+                        <option value="#fff0f0">Light Pink</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="fontStyle">Font Style:</label>
+                    <select id="fontStyle">
+                        <option value="'Poppins', sans-serif">Poppins</option>
+                        <option value="'Roboto', sans-serif">Roboto</option>
+                        <option value="'Pacifico', cursive">Pacifico</option>
+                        <option value="'Open Sans', sans-serif">Open Sans</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Border Style:</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="borderStyle" value="none" checked>
+                            None
+                        </label>
+                        <label>
+                            <input type="radio" name="borderStyle" value="double">
+                            Double
+                        </label>
+                        <label>
+                            <input type="radio" name="borderStyle" value="solid">
+                            Solid
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="addDefaultImage">
+                        Add Default Picture
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="greetingText">Greeting Message:</label>
+                    <textarea id="greetingText" rows="4" placeholder="Write your birthday message here..."></textarea>
+                </div>
+
+                <button type="button" class="update-btn" onclick="updateCard()">
+                    Update Card
+                </button>
+            </form>
+        </div>
+
+        <div class="card-preview">
+            <div id="birthdayCard" class="birthday-card">
+                <h2>Birthday Card Preview</h2>
+                <p>Customize your card using the options on the left!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateCard() {
+            const card = document.getElementById('birthdayCard');
+            
+            // Background Color
+            const bgColor = document.getElementById('bgColor').value;
+            card.style.backgroundColor = bgColor;
+
+            // Font Style
+            const fontStyle = document.getElementById('fontStyle').value;
+            card.style.fontFamily = fontStyle;
+
+            // Border Style
+            const borderStyles = document.getElementsByName('borderStyle');
+            let borderStyle = '';
+            for (let style of borderStyles) {
+                if (style.checked) {
+                    borderStyle = style.value;
+                    break;
+                }
+            }
+
+            switch (borderStyle) {
+                case 'none':
+                    card.style.border = 'none';
+                    break;
+                case 'double':
+                    card.style.border = '6px double var(--primary-color)';
+                    break;
+                case 'solid':
+                    card.style.border = '3px solid var(--primary-color)';
+                    break;
+            }
+
+            // Default Image
+            const addDefaultImage = document.getElementById('addDefaultImage').checked;
+            const existingImage = card.querySelector('.card-image');
+            
+            // Remove existing image if present
+            if (existingImage) {
+                existingImage.remove();
+            }
+            
+            // Add new image if checkbox is checked
+            if (addDefaultImage) {
+                const img = document.createElement('img');
+                img.src = 'https://via.placeholder.com/250x250?text=Birthday+Wishes';
+                img.alt = 'Birthday Image';
+                img.classList.add('card-image');
+                card.insertBefore(img, card.firstChild);
+            }
+
+            // Greeting Text
+            const greetingText = document.getElementById('greetingText').value;
+            
+            // Clear existing content except the first child (potential image)
+            while (card.children.length > 1) {
+                card.removeChild(card.lastChild);
+            }
+
+            // Add Title
+            const titleElement = document.createElement('h2');
+            titleElement.textContent = 'Happy Birthday!';
+            card.appendChild(titleElement);
+
+            // Add Greeting Message
+            const messageElement = document.createElement('p');
+            messageElement.textContent = greetingText || 'Wishing you a day filled with joy and happiness!';
+            card.appendChild(messageElement);
+            // Add some animations
+            card.style.transform = 'scale(1.05)';
+            setTimeout(() => {
+                card.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        // Optional: Add some interactivity and real-time preview
+        document.addEventListener('DOMContentLoaded', () => {
+            const bgColorSelect = document.getElementById('bgColor');
+            const fontStyleSelect = document.getElementById('fontStyle');
+            const borderStyleRadios = document.getElementsByName('borderStyle');
+            const addDefaultImageCheckbox = document.getElementById('addDefaultImage');
+            const greetingTextArea = document.getElementById('greetingText');
+
+            // Add event listeners for real-time preview
+            [bgColorSelect, fontStyleSelect, greetingTextArea].forEach(element => {
+                element.addEventListener('input', updateCard);
+            });
+
+            borderStyleRadios.forEach(radio => {
+                radio.addEventListener('change', updateCard);
+            });
+
+            addDefaultImageCheckbox.addEventListener('change', updateCard);
+
+            // Initial card setup
+            updateCard();
+        });
+    </script>
+</body>
+</html>
